@@ -1,0 +1,23 @@
+{
+  "name": "flash-generator",
+  "version": "1.0.0",
+  "description": "a flashcard generator, duh?",
+  "main": "BasicCard.js",
+  "dependencies": {
+    "inquirer": "^3.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/derek-brown/Flashcard-Generator.git"
+  },
+  "author": "Derek Brown",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/derek-brown/Flashcard-Generator/issues"
+  },
+  "homepage": "https://github.com/derek-brown/Flashcard-Generator#readme"
+}
