@@ -17,10 +17,44 @@ var createCard = function(){
 		if(response.create === "cloze"){
 			createCloze();
 		}
+		else{
+			//createBasic();
+		}
 	});
 };
 
-var startQuiz = function(){
+var start = function(){
+
+	inquirer.prompt([
+	{
+		type:"list",
+		name: "selection",
+		message: "Welcome! Would you like to create flashcards or study from the existing ones?",
+		choices: ["create", "study"]
+	}
+	]).then(function(response){
+		if(response.selection === "create"){
+			inquirer.prompt([
+			{
+				type: "list",
+				name: "cardtype",
+				message: "Excellent! Which card would you like to create?",
+				choices: ["basic", "cloze"]
+			}
+			]).then(function(response){
+				if(response.cardtype === "basic"){
+					createBasic();
+				}else{
+					createCloze();
+				}
+			});
+		}else{
+			study();
+		}
+	});
+};
+
+var study = function(){
 
 	inquirer.prompt([
 	{
@@ -39,6 +73,7 @@ var startQuiz = function(){
 };
 
 //I need to critque this to make it just run the cloze cards and display them properly
+//This is currently displaying the basic NOT THE CLOZE
 
 var clozeSet = function(){
 
@@ -123,9 +158,26 @@ var createCloze = function (){
 	]).then(function(response){
 		var newFact = new ClozeCard(response.text, response.cloze);
 		newFact.magic();
-		newFact.getData();
 	})
 }
 
-//startQuiz();
-createCard();
+
+var createBasic = function (){
+	inquirer.prompt([
+	{
+		type: "input",
+		name: "front",
+		message: "Please enter the a question"
+	},
+	{
+		type: "input",
+		name: "back",
+		message: "Please enter the answer"
+	}
+	]).then(function(response){
+		var newFact = new BasicCard(response.front, response.back);
+		newFact.logData();
+	})
+}
+
+start();

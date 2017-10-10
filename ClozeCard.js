@@ -1,6 +1,7 @@
 var cloze = require("./data/cloze");
 var UserPrompt = require("./UserPrompt");
 var fs = require("fs");
+var clozeLog = "./data/cloze.json";
 
 var ClozeCard = function(text, cloze){
 	this.text = text;
@@ -19,18 +20,14 @@ var ClozeCard = function(text, cloze){
 	};
 	this.logData = function(){
 
-		var log = this;
-		
-		fs.appendFile("log.json", JSON.stringify(log, null, 2));
+		fs.appendFile(clozeLog, JSON.stringify(this, null, 2));
 	};
 	this.getData = function(){
-		fs.readFile("log.json", "utf8", function(err, data){
+		fs.readFile(clozeLog, "utf8", function(err, data){
 			if(err) throw err;
 			console.log(data);
 		});
 	};
 };
-
-
 
 module.exports = ClozeCard;
