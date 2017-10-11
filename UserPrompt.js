@@ -97,7 +97,7 @@ var clozeSet = function(){
 			}
 			]).then(function(response){
 				if(response.request === "Yes"){
-					startQuiz();
+					clozeSet();
 					clozeCnt = 0;
 				}
 			});
@@ -128,8 +128,8 @@ var basicSet = function(){
 			}
 			]).then(function(response){
 				if(response.request === "Yes"){
-					startQuiz();
-					count = 0;
+					basicSet();
+					basicCnt = 0;
 				}
 			});
 		}

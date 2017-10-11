@@ -3,5 +3,10 @@
     "text": "I have two cats",
     "cloze": "cats",
     "partial": "I have two ..."
+  },
+  {
+    "text": "My name is Derek",
+    "cloze": "Derek",
+    "partial": "My name is ..."
   }
 ]
