@@ -1,14 +1,16 @@
-var basic = require("./data/basic");
+var basicLog = require("./data/basic.json");
+var basic = "";
 var UserPrompt = require("./UserPrompt");
 var fs = require("fs");
-var basicLog = "./data/basic.json"
 
 var BasicCard = function(front, back){
 	this.front = front;
 	this.back = back;
 	this.logData = function(){
+		var card = this;
+		basicLog.push(card);
 
-		fs.appendFile(basicLog, JSON.stringify(this, null, 2));
+		fs.writeFile("./data/basic.json", JSON.stringify(basicLog, null, 2));
 	};
 	this.getData = function(){
 		fs.readFile(basicLog, "utf8", function(err, data){

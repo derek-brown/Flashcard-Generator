@@ -3,7 +3,8 @@ var basic = require("./data/basic");
 var cloze = require("./data/cloze")
 var BasicCard = require("./BasicCard");
 var ClozeCard = require("./ClozeCard");
-var count = 0;
+var basicCnt = 0;
+var clozeCnt = 0;
 
 var createCard = function(){
 	inquirer.prompt([
@@ -18,7 +19,7 @@ var createCard = function(){
 			createCloze();
 		}
 		else{
-			//createBasic();
+			createBasic();
 		}
 	});
 };
@@ -72,9 +73,6 @@ var study = function(){
 	});
 };
 
-//I need to critque this to make it just run the cloze cards and display them properly
-//This is currently displaying the basic NOT THE CLOZE
-
 var clozeSet = function(){
 
 	inquirer.prompt([
@@ -83,14 +81,12 @@ var clozeSet = function(){
 		message: "Welcome to Cloze Flashcards"
 	}
 	]).then(function(response){
-		if(basic[count]){
-			var round = new BasicCard(basic[count].front, basic[count].back);
-			console.log(basic[count].front);
-			console.log(basic[count].back);
-			console.log(round.front);
-			console.log(round.back);
-			count++;
-			basicSet();
+		if(cloze[clozeCnt]){
+			console.log(cloze[clozeCnt].partial);
+			console.log(cloze[clozeCnt].cloze);
+			console.log(cloze[clozeCnt].text);
+			clozeCnt++;
+			clozeSet();
 		}else{
 			inquirer.prompt([
 			{
@@ -102,7 +98,7 @@ var clozeSet = function(){
 			]).then(function(response){
 				if(response.request === "Yes"){
 					startQuiz();
-					count = 0;
+					clozeCnt = 0;
 				}
 			});
 		}
@@ -114,16 +110,13 @@ var basicSet = function(){
 	inquirer.prompt([
 	{
 		name: "basic",
-		message: "Welcome to Basic Flashcards"
+		message: "Welcome to Basic Flashcards! Please enter to begin!"
 	}
 	]).then(function(response){
-		if(basic[count]){
-			var round = new BasicCard(basic[count].front, basic[count].back);
-			console.log(basic[count].front);
-			console.log(basic[count].back);
-			console.log(round.front);
-			console.log(round.back);
-			count++;
+		if(basic[basicCnt]){
+			console.log(basic[basicCnt].front);
+			console.log(basic[basicCnt].back);
+			basicCnt++;
 			basicSet();
 		}else{
 			inquirer.prompt([

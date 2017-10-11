@@ -1,7 +1,7 @@
-var cloze = require("./data/cloze");
+var clozeLog = require("./data/cloze.json");
+var cloze = "";
 var UserPrompt = require("./UserPrompt");
 var fs = require("fs");
-var clozeLog = "./data/cloze.json";
 
 var ClozeCard = function(text, cloze){
 	this.text = text;
@@ -19,8 +19,10 @@ var ClozeCard = function(text, cloze){
 		}
 	};
 	this.logData = function(){
+		var card = this;
+		clozeLog.push(card);
 
-		fs.appendFile(clozeLog, JSON.stringify(this, null, 2));
+		fs.writeFile("./data/cloze.json", JSON.stringify(clozeLog, null, 2));
 	};
 	this.getData = function(){
 		fs.readFile(clozeLog, "utf8", function(err, data){
